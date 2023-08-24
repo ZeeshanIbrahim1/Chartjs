@@ -31,6 +31,17 @@
             'rgba(54, 162, 108, 0.6)',
             ],
         },
+        {
+            label: 'Population',
+            data: initialData,
+            backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(15, 140, 132, 0.6)',
+            'rgba(54, 162, 108, 0.6)',
+            ],
+        },
     ],
     }        
 
@@ -51,15 +62,15 @@
     
         // Function to update chart data with random values
         function updateChartData() {
-            let newData = initialData.map(() => Math.floor(Math.random() * 1000));
+            let newData = initialData.map(() => Math.floor(Math.random() * 1000000));
             createdChart.data.datasets[0].data = newData;
-            // let anotherData = initialData.map(()=>  Math.floor(Math.random()*1000000))
-            // createdChart.data.datasets[1].data = anotherData;
+            let anotherData = initialData.map(()=>  Math.floor(Math.random()*1000000))
+            createdChart.data.datasets[1].data = anotherData;
             createdChart.update(); 
         }
 
         
-        setInterval(updateChartData, 4000);
+        setInterval(updateChartData, 2000);
     </script>
     <style>
         .container{
