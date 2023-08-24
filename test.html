@@ -7,48 +7,59 @@
     <div class="container" >
         <canvas id="cnv" ></canvas>
     </div>
-    <script>
+    <script> 
         // Get the canvas element and its context
-        let mychart = document.getElementById("cnv").getContext("2d");
+    let mychart = document.getElementById("cnv").getContext("2d");
+    let initialData = [
+        450000,
+        250000,
+        900000,
+        350000,
+        150000
+    ];
 
-        // Initial data
-        let initialData = [
-            450000,
-            250000,
-            900000,
-            350000,
-            150000
-        ];
+    const data = {
+        labels: ['Lahore', 'Pindi', 'Karachi', 'Multan', 'Melsi'],
+        datasets: [{
+            label: 'Population',
+            data: initialData,
+            backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(15, 140, 132, 0.6)',
+            'rgba(54, 162, 108, 0.6)',
+            ],
+        },
+    ],
+    }        
 
+    const options = {
+        responsive : true,
+        // scales: {
+        //     y:{
+        //         beginAtZero: true,
+        //     }
+        // }
+    }
         // Create the initial chart
-        let createdChart = new Chart(mychart, {
-            type: 'bar',
-            data: {
-                labels: ['Lahore', 'Pindi', 'Karachi', 'Multan', 'Melsi'],
-                datasets: [{
-                    label: 'Population',
-                    data: initialData,
-                    backgroundColor:[
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(15, 140, 132, 0.6)',
-                    'rgba(54, 162, 108, 0.6)',
-                    ],
-                }],
-               
-            },
-        });
-
+    let createdChart = new Chart(mychart, {
+        type: 'bar',
+        data,
+        options
+    });
+    
         // Function to update chart data with random values
         function updateChartData() {
-            let newData = initialData.map(() => Math.floor(Math.random() * 1000000));
+            let newData = initialData.map(() => Math.floor(Math.random() * 1000));
             createdChart.data.datasets[0].data = newData;
-            createdChart.update(); // Update the chart to reflect the new data
+            // let anotherData = initialData.map(()=>  Math.floor(Math.random()*1000000))
+            // createdChart.data.datasets[1].data = anotherData;
+            createdChart.update(); 
         }
 
-        // Update the chart data every 5 seconds
-        setInterval(updateChartData, 2000);
+        
+        setInterval(updateChartData, 4000);
     </script>
     <style>
         .container{
